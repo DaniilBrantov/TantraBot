@@ -44,3 +44,4 @@ pip install configure`
 Всё, бот полностью настроен!
 
 
+# TantraBot
