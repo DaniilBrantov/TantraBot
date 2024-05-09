@@ -39,6 +39,10 @@ def start(message):
 def get_admin(message):
     handle_getrazrabotchik(message, sql, client, db)
 
+@client.message_handler(commands=['help'])
+def get_admin(message):
+    handle_helpcmd(message, sql, client, db)
+
 @client.message_handler(commands=['ot'])
 def ot(message):
     handle_sendmsgtouser(message, client, sql)
