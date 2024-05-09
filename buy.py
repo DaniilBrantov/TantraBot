@@ -140,7 +140,7 @@ def handle_order_confirmation(call, client, sql):
             user_id = call.from_user.id
             user_link = f"tg://user?id={user_id}"
             rmk = types.InlineKeyboardMarkup()
-            menu_button = types.InlineKeyboardButton(text='Меню', callback_data=f'help')
+            menu_button = types.InlineKeyboardButton(text='Menu', callback_data=f'help')
             rmk.add(menu_button)
             client.send_message(call.message.chat.id, "✅ | The order has been confirmed. Your order will be processed and we will contact you", reply_markup=rmk
             )
