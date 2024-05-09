@@ -26,6 +26,7 @@ from callbacks import *
 # Регистрация обработчика команды /start
 @client.message_handler(commands=['start'])
 def start(message):
+    
     users_with_access_777 = sql.execute("SELECT * FROM users WHERE access = 777").fetchall()
             
     # Iterate over each user and send the message
