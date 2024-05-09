@@ -1,9 +1,9 @@
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-WELCOME_TEXT = "🛒 | Добро пожаловать, {name}!"
-HELP_TEXT = "Привет и добро пожаловать! ✌️ \n\n Для оплаты покупки обращайтесь к нашим операторам!"
-ERROR_TEXT = '🚫 | Ошибка при выполнении команды start: {error}'
-HELP_BUTTON_TEXT = "👉 Получить то,что мне нужно 👈"
+WELCOME_TEXT = "🛒 | Welcome, {name}!"
+HELP_TEXT = "Hello and welcome!\n\n Contact our operators for payment assistance!"
+ERROR_TEXT = '🚫 | Error executing the start command: {error}'
+HELP_BUTTON_TEXT = "👉 Get what I need 👈"
 
 def handle_start(message, sql, db, client):
     cid = message.chat.id
@@ -23,6 +23,6 @@ def handle_start(message, sql, db, client):
 
 def create_help_button():
     markup = InlineKeyboardMarkup()
-    help_button = InlineKeyboardButton(HELP_BUTTON_TEXT, callback_data='buy')
+    help_button = InlineKeyboardButton(HELP_BUTTON_TEXT, callback_data='help')
     markup.add(help_button)
     return markup

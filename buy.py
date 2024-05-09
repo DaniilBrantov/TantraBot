@@ -13,7 +13,7 @@ def handle_buy(message, client, sql):
         all_products = sql.execute("SELECT * FROM shop").fetchall()
 
         if not all_products:
-            client.send_message(cid, "🛒 | Список товаров пуст.")
+            client.send_message(cid, "🛒 | The list of items is empty.")
             return
 
         for product in all_products:
@@ -24,11 +24,11 @@ def handle_buy(message, client, sql):
             product_photo = product[3]
 
             # Создаем описание товара
-            text = f"{product_name}\n{product_description}\nЦена: {product_price} руб.\n\n"
+            text = f"{product_name}\n{product_description}\nPrice: {product_price} Rp.\n\n"
 
             # Создаем кнопки "Купить"
             rmk = types.InlineKeyboardMarkup()
-            item_buy = types.InlineKeyboardButton(text='Купить', callback_data=f'confirm_order_{product_id}')
+            item_buy = types.InlineKeyboardButton(text='Buy', callback_data=f'confirm_order_{product_id}')
             rmk.add(item_buy)
 
             # Отправляем сообщение пользователю
@@ -70,17 +70,17 @@ def handle_confirm_order(call, client, sql):
 
             # Создаем описание товара
             text = (
-                f"Вы хотите купить следующий товар:\n\n"
-                f"Название: {product_name}\n"
-                f"Описание: {product_description}\n"
-                f"Цена: {product_price} руб.\n\n"
-                f"Вы уверены, что хотите купить?"
+                f"You want to buy the following item:\n\n"
+                f"Name: {product_name}\n"
+                f"Description: {product_description}\n"
+                f"Price: {product_price} rubles\n\n"
+                f"Are you sure you want to buy?"
             )
 
             # Создаем кнопки подтверждения
             rmk = types.InlineKeyboardMarkup()
-            confirm_button = types.InlineKeyboardButton(text='Да', callback_data=f'order_confirmed_{product_id}')
-            cancel_button = types.InlineKeyboardButton(text='Нет', callback_data=f'order_confirmed_0')
+            confirm_button = types.InlineKeyboardButton(text='Yes', callback_data=f'order_confirmed_{product_id}')
+            cancel_button = types.InlineKeyboardButton(text='No', callback_data=f'order_confirmed_0')
             rmk.add(confirm_button, cancel_button)
 
             # Редактируем сообщение с новой информацией
@@ -129,9 +129,9 @@ def handle_order_confirmation(call, client, sql):
             
 
             rmk = types.InlineKeyboardMarkup()
-            menu_button = types.InlineKeyboardButton(text='Меню', callback_data=f'help')
+            menu_button = types.InlineKeyboardButton(text='Menu', callback_data=f'help')
             rmk.add(menu_button)
-            client.send_message(call.message.chat.id, "❌ | Заказ отменен.", reply_markup=rmk)
+            client.send_message(call.message.chat.id, "❌ | The order has been cancelled.", reply_markup=rmk)
 
         elif product_id > 0:
             # Сообщаем пользователю об успешном подтверждении
@@ -142,7 +142,7 @@ def handle_order_confirmation(call, client, sql):
             rmk = types.InlineKeyboardMarkup()
             menu_button = types.InlineKeyboardButton(text='Меню', callback_data=f'help')
             rmk.add(menu_button)
-            client.send_message(call.message.chat.id, "✅ | Заказ подтвержден. Ваш заказ будет обработан и мы с вами свяжемся", reply_markup=rmk
+            client.send_message(call.message.chat.id, "✅ | The order has been confirmed. Your order will be processed and we will contact you", reply_markup=rmk
             )
 
             # Отправляем сообщение администраторам

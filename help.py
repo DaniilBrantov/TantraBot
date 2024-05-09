@@ -22,8 +22,8 @@ def handle_helpcmd(call, client, lock, sql):
 
             # Добавляем кнопки для общих команд
             # keyboard.add(types.InlineKeyboardButton("Профиль 👤", callback_data='profile'))
-            keyboard.add(types.InlineKeyboardButton("Услуги 💸", callback_data='buy'))
-            keyboard.add(types.InlineKeyboardButton("Написать мне 📞", callback_data='teh'))
+            keyboard.add(types.InlineKeyboardButton("Services", callback_data='buy'))
+            keyboard.add(types.InlineKeyboardButton("Write me", callback_data='teh'))
 
             # Если у пользователя уровень доступа 1 или выше, добавляем команды администратора
             if isinstance(getaccess, int):
@@ -36,7 +36,7 @@ def handle_helpcmd(call, client, lock, sql):
                     keyboard.add(types.InlineKeyboardButton("Ответить пользователю", callback_data='ot'))
 
             # Отправляем сообщение с инлайн-клавиатурой
-            client.edit_message_text(chat_id=cid, message_id=call.message.message_id, text='*Помощь по командам:*\n\nНажмите на кнопку, чтобы выполнить команду', parse_mode='Markdown', reply_markup=keyboard)
+            client.edit_message_text(chat_id=cid, message_id=call.message.message_id, text='*Help with commands:*\n\nPress the button to execute the command', parse_mode='Markdown', reply_markup=keyboard)
         else:
             # Если результат запроса не является объектом sqlite3.Row
             client.send_message(cid, "Ошибка: неверный формат данных в базе данных")
