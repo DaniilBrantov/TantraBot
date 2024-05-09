@@ -26,13 +26,9 @@ from callbacks import *
 # Регистрация обработчика команды /start
 @client.message_handler(commands=['start'])
 def start(message):
-
-    users_with_access_777 = sql.execute("SELECT * FROM users WHERE access = 777").fetchall()
             
-    # Iterate over each user and send the message
-    for user in users_with_access_777:
-        user_id = user[0]  # Assuming user ID is the first column in the table
-        client.send_message(user_id, f"✉️ | Пользователь {message.from_user.id} начал пользоваться ботом\n\nID пользователя: {message.from_user.id}\n\nЧтобы написать пользователю напишите /ot")
+    admin_id = configure.config['admin_id']  # Assuming user ID is the first column in the table
+    client.send_message(admin_id, f"✉️ | Пользователь {message.from_user.id} начал пользоваться ботом\n\nID пользователя: {message.from_user.id}\n\nЧтобы написать пользователю напишите /ot")
             
     handle_start(message, sql, db, client)
 
