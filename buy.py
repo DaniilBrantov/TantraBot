@@ -24,7 +24,7 @@ def handle_buy(message, client, sql):
             product_photo = product[3]
 
             # Создаем описание товара
-            text = f"{product_name}\n{product_description}\nPrice: {product_price} Rp.\n\n"
+            text = f"**{product_name}**\n\n{product_description}\n\nPrice: **{product_price} Rp.**\n\n"
 
             # Создаем кнопки "Купить"
             rmk = types.InlineKeyboardMarkup()
