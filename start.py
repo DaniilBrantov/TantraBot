@@ -1,7 +1,7 @@
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 WELCOME_TEXT = "🛒 | Welcome, {name}!"
-HELP_TEXT = "Hello and welcome!\n\n Contact our operators for payment assistance!"
+HELP_TEXT = "You've come to a place where every type of massage is presented for your pleasure and well-being. We offer a variety of services, from tantric full body massage to pelvic muscle health care. Our experienced staff guarantees you an unforgettable relaxation and wellness experience.\n\nCome and enjoy a unique massage experience!"
 ERROR_TEXT = '🚫 | Error executing the start command: {error}'
 HELP_BUTTON_TEXT = "👉 Get what I need 👈"
 
