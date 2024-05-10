@@ -3,12 +3,6 @@ import threading
 import configure
 from database import initialize_database, sql, db
 
-# !! Перед запуском добавить районы в таблицу district
-# ! Оптимизация кода: 
-# ! 1) Вынести 622859164 отдельно
-# ! 2) Добавить фасовку
-# ! 3) Редактирование локации
-# ! 4) Предзаказ
 
 # Инициализация базы данных
 initialize_database()
