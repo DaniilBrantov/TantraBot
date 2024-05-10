@@ -3,7 +3,7 @@ from telebot import types
 import configure
 
 # Список ID администраторов (должен быть заранее задан)
-ADMIN_ID = configure.config['admin_id']
+# ADMIN_ID = configure.config['admin_id']
 
 # Обработчик вывода всех товаров
 def handle_buy(message, client, sql):
@@ -146,7 +146,8 @@ def handle_order_confirmation(call, client, sql):
             )
 
             # Отправляем сообщение администраторам
-            client.send_message(ADMIN_ID, f"⚠️ | Новый заказ подтвержден:\nID услуги: {product_id}\nID пользователя: {user_id}\n Ссылка на аккаунт: {user_link}")
+            for admin_id in configure.config['admin_id']:
+                client.send_message(admin_id, f"⚠️ | Новый заказ подтвержден:\nID услуги: {product_id}\nID пользователя: {user_id}\n Ссылка на аккаунт: {user_link}")
 
         # Подтверждаем, что обработали callback
         client.answer_callback_query(call.id)

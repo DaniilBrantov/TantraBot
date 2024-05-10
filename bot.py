@@ -21,8 +21,9 @@ from callbacks import *
 @client.message_handler(commands=['start'])
 def start(message):
             
-    admin_id = configure.config['admin_id']  # Assuming user ID is the first column in the table
-    client.send_message(admin_id, f"✉️ | Пользователь {message.from_user.id} начал пользоваться ботом\n\nID пользователя: {message.from_user.id}\n\nЧтобы написать пользователю напишите /ot")
+    for admin_id in configure.config['admin_id']:
+        print(int(admin_id))
+        client.send_message(int(admin_id), f"✉️ | Пользователь {message.from_user.id} начал пользоваться ботом\n\nID пользователя: {message.from_user.id}")
             
     handle_start(message, sql, db, client)
 

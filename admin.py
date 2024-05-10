@@ -78,11 +78,12 @@ def handle_getprofile_next(message, sql, client):
 
 def handle_getrazrabotchik(message, sql, client, db):
     try:
-        admin_id = configure.config['admin_id']
-        if message.from_user.id == int(admin_id):
-            sql.execute(f"UPDATE users SET access = 777 WHERE id = ?", (admin_id,))
-            db.commit()
-            client.send_message(message.chat.id, f"✅ | Вы выдали себе Разработчика")
+        for admin_id in configure.config['admin_id']:
+            if message.from_user.id == int(admin_id):
+                sql.execute(f"UPDATE users SET access = 777 WHERE id = ?", (admin_id,))
+                db.commit()
+                client.send_message(message.chat.id, f"✅ | Вы выдали себе Разработчика")
+
         else:
             client.send_message(message.chat.id, f"⛔️ | Отказано в доступе!")
             print(message.from_user.id)
