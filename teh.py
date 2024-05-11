@@ -38,7 +38,7 @@ def handle_teh_callback(call, client, sql):
             # Iterate over each user and send the message
             for user in users_with_access_777:
                 user_id = user[0]  # Assuming user ID is the first column in the table
-                client.send_message(user_id, f"✉️ | Пользователь {call.from_user.id} отправил сообщение в тех.поддержку\n\nID пользователя: {call.from_user.id}\nТекст: {tehtextbyuser}\n\nЧтобы ответить пользователю напишите /ot")
+                client.send_message(user_id, f"✉️ | Пользователь {call.from_user.id} отправил сообщение в тех.поддержку\n\nID пользователя: {call.from_user.id}\nТекст: {tehtextbyuser}")
             
             # Delete the message after sending it to all users
             client.delete_message(call.message.chat.id, call.message.message_id)

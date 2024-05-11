@@ -138,16 +138,21 @@ def handle_order_confirmation(call, client, sql):
             client.delete_message(call.message.chat.id, call.message.message_id-0)
 
             user_id = call.from_user.id
-            user_link = f"tg://user?id={user_id}"
+            get_user = call.from_user.username
+            user_link = f"https://t.me/{get_user}"
+
+
+
             rmk = types.InlineKeyboardMarkup()
             menu_button = types.InlineKeyboardButton(text='Menu', callback_data=f'help')
             rmk.add(menu_button)
             client.send_message(call.message.chat.id, "✅ | The order has been confirmed. Your order will be processed and we will contact you", reply_markup=rmk
             )
 
+
             # Отправляем сообщение администраторам
             for admin_id in configure.config['admin_id']:
-                client.send_message(admin_id, f"⚠️ | Новый заказ подтвержден:\nID услуги: {product_id}\nID пользователя: {user_id}\n Ссылка на аккаунт: {user_link}")
+                client.send_message(admin_id, f"⚠️ | Новый заказ подтвержден:\nID услуги: {product_id}\nID пользователя: {user_id}\nСсылка на пользователя: {user_link}")
 
         # Подтверждаем, что обработали callback
         client.answer_callback_query(call.id)

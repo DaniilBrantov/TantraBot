@@ -2,8 +2,9 @@ from telebot import types
 import sqlite3
 
 def handle_sendmsgtouser(message, client, sql):
+    cid = message.message.chat.id
+
     try:
-        cid = message.message.chat.id
         user_info = sql.execute(f"SELECT * FROM users WHERE id = {cid}").fetchone()
         
         if user_info:
@@ -27,8 +28,9 @@ def handle_sendmsgtouser_next(message, client):
         client.send_message(cid, f'🚫 | Ошибка при выполнении команды отправки сообщения пользователю: {e}')
 
 def handle_sendmsgtouser_next_text(message, client, user_id):
+    cid = message.chat.id
+
     try:
-        cid = message.chat.id
         getsendmsgtousertext = message.text
         rmk = types.InlineKeyboardMarkup()
         item_yes = types.InlineKeyboardButton(text='✅', callback_data=f'sendmsgtouseryes_{user_id}_{getsendmsgtousertext}')  # передаем текст через callback_data
